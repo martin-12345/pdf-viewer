@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Base64 PDF Viewer</title>
+</head>
+<body>
+
+<h2>Base64 PDF Decoder</h2>
+Paste your Base64 Encoded PDF in the box. It may be suffixed with &lt;/EncodedPdf&gt; , this will be removed. Press the
+ button and if valid the PDF will be displayed in a new tab
+<P></P>
+
+<form action="/decode" method="post" target="_blank">
+    <textarea name="base64pdf"
+              rows="40"
+              cols="120"
+              placeholder="Paste Base64 PDF here..."
+              required></textarea>
+    <br><br>
+    <button type="submit">Decode and Open PDF</button>
+</form>
+
+</body>
+</html>
