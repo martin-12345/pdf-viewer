@@ -31,8 +31,6 @@ IDEgMCBSID4+CnN0YXJ0eHJlZgo1MDQKJSVFT0Y=
 @Controller
 public class PdfController {
 
-    private static final String END_ENCODED = "</EncodedPdf>";
-
     @GetMapping("/")
     public String index() {
         return "index";
@@ -46,13 +44,15 @@ public class PdfController {
             response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
             return;
         }
-
         // Remove data URL prefix if present
         if (base64pdf.contains(",")) {
             base64pdf = base64pdf.substring(base64pdf.indexOf(",") + 1);
         }
-        if (base64pdf.contains(END_ENCODED)) {
-            base64pdf = base64pdf.substring(0, base64pdf.indexOf(END_ENCODED) );
+        if(base64pdf.indexOf('>') < base64pdf.length()-1){
+            base64pdf=base64pdf.substring((base64pdf.indexOf('>')+1));
+        }
+        if(base64pdf.contains("<")){
+            base64pdf=base64pdf.substring(0, base64pdf.indexOf("<"));
         }
 
         // Convert string to InputStream
